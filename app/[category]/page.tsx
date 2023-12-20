@@ -11,7 +11,9 @@ export default async function Page({
 }: {
   params: { category: string }
 }) {
-  const files = await fs.readdir(`${BASE_PATH}/${params.category}`)
+  const files = (await fs.readdir(`${BASE_PATH}/${params.category}`)).filter(
+    filename => filename.endsWith('.jpg') || filename.endsWith('.jpeg'),
+  )
 
   const metadata = Object.fromEntries(
     await Promise.all(
