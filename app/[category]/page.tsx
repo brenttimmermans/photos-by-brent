@@ -13,27 +13,34 @@ export default async function Page({
 }) {
   const files = await fs.readdir(`${BASE_PATH}/${params.category}`)
 
+  const metadata = Object.fromEntries(
+    await Promise.all(
+      files.map(async file => {
+        const exif = await exifr.parse(
+          `${BASE_PATH}/${params.category}/${file}`,
+          ['ExifImageWidth', 'ExifImageHeight'],
+        )
+
+        return [file, exif]
+      }),
+    ),
+  )
+
   return (
     <div>
       <Link href="/">{params.category.toUpperCase()}</Link>
       <div className={styles.grid}>
-        {files.map(async file => {
-          const { ExifImageWidth, ExifImageHeight } = await exifr.parse(
-            `${BASE_PATH}/${params.category}/${file}`,
-          )
-
+        {files.map(file => {
+          const { ExifImageWidth, ExifImageHeight } = metadata[file]
           const isHorizontal = ExifImageWidth > ExifImageHeight
-
-          const width = isHorizontal ? 600 : 400
-          const height = isHorizontal ? 400 : 600
 
           return (
             <Image
               key={file}
               src={`/images/${params.category}/${file}`}
               alt={file}
-              width={width}
-              height={height}
+              width={ExifImageWidth}
+              height={ExifImageHeight}
               className={`
               ${styles.gridImage} ${
                 isHorizontal ? styles.horizontal : styles.vertical
