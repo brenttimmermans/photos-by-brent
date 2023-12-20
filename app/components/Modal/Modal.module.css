@@ -1,0 +1,37 @@
+.dialog {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+
+  border: none;
+
+  min-width: 150px;
+  min-height: 150px;
+
+  overflow: visible;
+}
+
+.dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.closeButton {
+  position: absolute;
+  top: 0px;
+  right: -30px;
+
+  width: 30px;
+  height: 30px;
+
+  background: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+
+  cursor: pointer;
+
+  z-index: 5;
+}
