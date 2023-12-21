@@ -1,22 +1,22 @@
 import exifr from 'exifr'
 import fs from 'fs/promises'
+import path from 'path'
 import ImageModal from './ImageModal'
-
-const BASE_PATH = `${process.cwd()}/public/images`
 
 interface Props {
   params: { category: string; id: string }
 }
 
 export default async function CategoryDetailModal({ params }: Props) {
-  const files = (await fs.readdir(`${BASE_PATH}/${params.category}`)).filter(
+  const filesPath = path.resolve('public/images', params.category)
+  const files = (await fs.readdir(filesPath)).filter(
     filename => filename.endsWith('.jpg') || filename.endsWith('.jpeg'),
   )
 
-  const exif = await exifr.parse(
-    `${BASE_PATH}/${params.category}/${params.id}`,
-    ['ExifImageWidth', 'ExifImageHeight'],
-  )
+  const exif = await exifr.parse(path.resolve(filesPath, params.id), [
+    'ExifImageWidth',
+    'ExifImageHeight',
+  ])
 
   const getNextImage = (file: string) => {
     const index = files.indexOf(file)
