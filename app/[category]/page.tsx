@@ -31,8 +31,7 @@ export default async function CategoryPage({ params, modal }: Props) {
   )
 
   return (
-    <div>
-      <Link href="/">{params.category.toUpperCase()}</Link>
+    <>
       <div className={styles.grid}>
         {Object.entries(metadata).map(([file, metadata]) => {
           const { ExifImageWidth, ExifImageHeight } = metadata
@@ -56,6 +55,6 @@ export default async function CategoryPage({ params, modal }: Props) {
         })}
       </div>
       {modal}
-    </div>
+    </>
   )
 }

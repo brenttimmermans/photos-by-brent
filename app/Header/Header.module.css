@@ -1,0 +1,48 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header nav {
+  display: flex;
+  align-items: center;
+}
+
+.header ul {
+  display: flex;
+  gap: 0.8rem;
+  padding-right: 0.8rem;
+}
+
+.header ul li {
+  list-style-type: none;
+}
+
+.header ul + ul::before {
+  content: '|';
+}
+
+.header nav a::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 1px;
+  background: #000;
+  transition: width 0.2s;
+}
+
+.header nav a:hover::after {
+  width: 100%;
+}
+
+/* 👇 Can be deleted once all pages are implemented */
+.header nav a[aria-disabled='true'] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.header nav a[aria-disabled='true']::after {
+  transition: none;
+  height: 0;
+}
