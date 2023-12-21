@@ -2,16 +2,16 @@ import exifr from 'exifr'
 import { promises as fs } from 'fs'
 import Image from 'next/image'
 import Link from 'next/link'
+import path from 'path'
 import styles from './page.module.css'
-
-const BASE_PATH = `${process.cwd()}/public/images`
 
 interface Props {
   params: { category: string }
 }
 
 export default async function CategoryPage({ params }: Props) {
-  const files = (await fs.readdir(`${BASE_PATH}/${params.category}`)).filter(
+  const filesPath = path.resolve('public/images', params.category)
+  const files = (await fs.readdir(filesPath)).filter(
     filename => filename.endsWith('.jpg') || filename.endsWith('.jpeg'),
   )
 
@@ -20,10 +20,11 @@ export default async function CategoryPage({ params }: Props) {
   } = Object.fromEntries(
     await Promise.all(
       files.map(async file => {
-        const exif = await exifr.parse(
-          `${BASE_PATH}/${params.category}/${file}`,
-          ['ExifImageWidth', 'ExifImageHeight'],
-        )
+        const filePath = path.resolve(filesPath, file)
+        const exif = await exifr.parse(filePath, [
+          'ExifImageWidth',
+          'ExifImageHeight',
+        ])
 
         return [file, exif]
       }),
