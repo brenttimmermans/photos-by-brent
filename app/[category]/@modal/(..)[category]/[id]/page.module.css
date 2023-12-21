@@ -1,0 +1,17 @@
+.left {
+  position: absolute;
+  top: 0px;
+  left: calc(-50dvw + 50%);
+  width: 50dvw;
+  height: 100%;
+  cursor: w-resize;
+}
+
+.right {
+  position: absolute;
+  top: 0px;
+  right: calc(-50dvw + 50%);
+  width: 50dvw;
+  height: 100%;
+  cursor: e-resize;
+}
