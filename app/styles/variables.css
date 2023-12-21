@@ -1,0 +1,11 @@
+:root {
+  --color-background: hsl(0, 0%, 100%);
+  --color-text: hsl(0, 0%, 0%);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background: hsl(0, 0%, 0%);
+    --color-text: hsl(0, 0%, 100%);
+  }
+}
