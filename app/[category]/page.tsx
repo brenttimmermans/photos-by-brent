@@ -8,22 +8,22 @@ const BASE_PATH = `${process.cwd()}/public/images`
 
 interface Props {
   params: { category: string }
-  modal: React.ReactNode
 }
 
-export default async function CategoryPage({ params, modal }: Props) {
+export default async function CategoryPage({ params }: Props) {
   const files = (await fs.readdir(`${BASE_PATH}/${params.category}`)).filter(
     filename => filename.endsWith('.jpg') || filename.endsWith('.jpeg'),
   )
 
-  const metadata = Object.fromEntries(
+  const metadata: {
+    [key: string]: { ExifImageWidth: number; ExifImageHeight: number }
+  } = Object.fromEntries(
     await Promise.all(
       files.map(async file => {
-        const exif: { ExifImageWidth: number; ExifImageHeight: number } =
-          await exifr.parse(`${BASE_PATH}/${params.category}/${file}`, [
-            'ExifImageWidth',
-            'ExifImageHeight',
-          ])
+        const exif = await exifr.parse(
+          `${BASE_PATH}/${params.category}/${file}`,
+          ['ExifImageWidth', 'ExifImageHeight'],
+        )
 
         return [file, exif]
       }),
@@ -54,7 +54,6 @@ export default async function CategoryPage({ params, modal }: Props) {
           )
         })}
       </div>
-      {modal}
     </>
   )
 }
