@@ -10,16 +10,18 @@ export const metadata: Metadata = {
   description: 'Photography portfolio by Brent Timmermans',
 }
 
-export default function RootLayout({
-  children,
-}: {
+interface Props {
   children: React.ReactNode
-}) {
+  modal: React.ReactNode
+}
+
+export default function RootLayout({ children, modal }: Props) {
   return (
     <html lang="en">
       <body className={inter.className}>
         <Header />
         <main>{children}</main>
+        {modal}
       </body>
     </html>
   )
