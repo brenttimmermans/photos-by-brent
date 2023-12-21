@@ -6,11 +6,12 @@ import styles from './page.module.css'
 
 const BASE_PATH = `${process.cwd()}/public/images`
 
-export default async function Page({
-  params,
-}: {
+interface Props {
   params: { category: string }
-}) {
+  modal: React.ReactNode
+}
+
+export default async function CategoryPage({ params, modal }: Props) {
   const files = (await fs.readdir(`${BASE_PATH}/${params.category}`)).filter(
     filename => filename.endsWith('.jpg') || filename.endsWith('.jpeg'),
   )
@@ -18,10 +19,11 @@ export default async function Page({
   const metadata = Object.fromEntries(
     await Promise.all(
       files.map(async file => {
-        const exif = await exifr.parse(
-          `${BASE_PATH}/${params.category}/${file}`,
-          ['ExifImageWidth', 'ExifImageHeight'],
-        )
+        const exif: { ExifImageWidth: number; ExifImageHeight: number } =
+          await exifr.parse(`${BASE_PATH}/${params.category}/${file}`, [
+            'ExifImageWidth',
+            'ExifImageHeight',
+          ])
 
         return [file, exif]
       }),
@@ -32,26 +34,28 @@ export default async function Page({
     <div>
       <Link href="/">{params.category.toUpperCase()}</Link>
       <div className={styles.grid}>
-        {files.map(file => {
-          const { ExifImageWidth, ExifImageHeight } = metadata[file]
+        {Object.entries(metadata).map(([file, metadata]) => {
+          const { ExifImageWidth, ExifImageHeight } = metadata
           const isHorizontal = ExifImageWidth > ExifImageHeight
 
           return (
-            <Image
+            <Link
               key={file}
-              src={`/images/${params.category}/${file}`}
-              alt={file}
-              width={ExifImageWidth}
-              height={ExifImageHeight}
-              className={`
-              ${styles.gridImage} ${
-                isHorizontal ? styles.horizontal : styles.vertical
-              }
-              `}
-            />
+              href={`/${params.category}/${file}`}
+              className={isHorizontal ? styles.horizontal : styles.vertical}
+            >
+              <Image
+                src={`/images/${params.category}/${file}`}
+                alt={file}
+                width={ExifImageWidth}
+                height={ExifImageHeight}
+                className={styles.gridImage}
+              />
+            </Link>
           )
         })}
       </div>
+      {modal}
     </div>
   )
 }
