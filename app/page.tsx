@@ -1,11 +1,10 @@
-import Link from 'next/link'
-
 export default function Home() {
   return (
-    <main>
-      <h1>Landing page!</h1>
-      <Link href="/street">Street</Link>
-      <Link href="/night">Night</Link>
-    </main>
+    <>
+      <p>Welcome to my portfolio website!</p>
+      <p>
+        Use one of the links in the top right to have a look at some of my work.
+      </p>
+    </>
   )
 }
