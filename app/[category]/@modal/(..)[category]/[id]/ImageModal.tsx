@@ -46,6 +46,7 @@ export default function ImageModal({
         alt={photoId}
         width={width}
         height={height}
+        className={styles.modalImage}
       />
       <div className={styles.left} onClick={handlePreviousClick}></div>
       <div className={styles.right} onClick={handleNextClick}></div>
