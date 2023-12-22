@@ -28,7 +28,7 @@
   list-style-type: none;
 }
 
-.header nav a::after {
+.header nav a:not(.socials a)::after {
   content: '';
   display: block;
   width: 0;
@@ -37,8 +37,20 @@
   transition: width 0.2s;
 }
 
-.header nav a:hover::after {
+.header nav a:not(.socials a):hover::after {
   width: 100%;
+}
+
+.socials li {
+  height: 18px;
+}
+
+.socials li {
+  height: 18px;
+}
+
+.socials li a:hover {
+  opacity: 0.5;
 }
 
 /* 👇 Can be deleted once all pages are implemented */

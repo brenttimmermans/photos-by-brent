@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import styles from './Header.module.css'
 
@@ -45,9 +46,16 @@ export default function Header() {
               </Link>
             </li>
           </ul>
-          <ul>
+          <ul className={styles.socials}>
             <li>
-              <Link href={INSTAGRAM_LINK}>Instagram</Link>
+              <Link href={INSTAGRAM_LINK}>
+                <Image
+                  src="/icons/instagram.svg"
+                  alt="Instagram icon"
+                  width={16}
+                  height={16}
+                />
+              </Link>
             </li>
           </ul>
         </nav>
