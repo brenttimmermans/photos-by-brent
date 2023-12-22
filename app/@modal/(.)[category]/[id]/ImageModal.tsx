@@ -5,7 +5,7 @@ import useModal from '@/app/components/Modal/useModal'
 import Image from 'next/image'
 
 import { useRouter } from 'next/navigation'
-import { useEffect } from 'react'
+import { useCallback, useEffect } from 'react'
 import styles from './page.module.css'
 
 interface Props {
@@ -30,9 +30,34 @@ export default function ImageModal({
 
   useEffect(openDialog, [openDialog, photoId])
 
-  const handlePreviousClick = () => router.push(`/${category}/${previous}`)
-  const handleNextClick = () => router.push(`/${category}/${next}`)
+  const goToPreviousImage = useCallback(
+    () => router.push(`/${category}/${previous}`),
+    [router, category, previous],
+  )
+  const goToNextImage = useCallback(
+    () => router.push(`/${category}/${next}`),
+    [router, category, next],
+  )
 
+  // Adds keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'ArrowLeft') {
+        goToPreviousImage()
+      }
+
+      if (event.key === 'ArrowRight') {
+        goToNextImage()
+      }
+    }
+
+    document.addEventListener('keydown', handleKeyDown)
+
+    return () => document.removeEventListener('keydown', handleKeyDown)
+  }, [goToPreviousImage, goToNextImage])
+
+  const handlePreviousClick = () => goToPreviousImage()
+  const handleNextClick = () => goToNextImage()
   const handleCloseClick = () => {
     closeDialog()
     router.push(`/${category}`)
