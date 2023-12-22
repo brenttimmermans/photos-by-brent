@@ -8,6 +8,11 @@
   margin: 0;
 }
 
+html,
+body {
+  height: 100%;
+}
+
 body {
   font-family: 'Montserrat', sans-serif;
   line-height: 1.4;
@@ -17,10 +22,14 @@ body {
   max-width: 1500px;
   margin: 0 auto;
   padding: 25px;
+
+  display: flex;
+  flex-direction: column;
 }
 
 main {
   margin-top: 25px;
+  flex-grow: 1;
 }
 
 a {
