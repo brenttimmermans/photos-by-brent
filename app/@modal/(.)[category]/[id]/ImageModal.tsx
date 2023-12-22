@@ -28,7 +28,12 @@ export default function ImageModal({
   const { ref, openDialog, closeDialog } = useModal()
   const router = useRouter()
 
-  useEffect(openDialog, [openDialog, photoId])
+  useEffect(() => {
+    if (!ref.current?.open) {
+      window.scrollTo(0, 0)
+      openDialog()
+    }
+  }, [ref, openDialog, photoId])
 
   const goToPreviousImage = useCallback(
     () => router.push(`/${category}/${previous}`),
