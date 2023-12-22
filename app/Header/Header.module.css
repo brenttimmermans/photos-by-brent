@@ -53,6 +53,12 @@
   opacity: 0.5;
 }
 
+@media (prefers-color-scheme: dark) {
+  .socials img {
+    filter: invert(1);
+  }
+}
+
 /* 👇 Can be deleted once all pages are implemented */
 .header nav a[aria-disabled='true'] {
   opacity: 0.5;
