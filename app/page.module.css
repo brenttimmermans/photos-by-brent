@@ -17,7 +17,7 @@
 }
 
 .grid section:hover .background {
-  filter: blur(0);
+  opacity: 0.9;
 }
 
 /* 👇 Can be deleted once all pages are implemented */
@@ -26,7 +26,7 @@
 }
 
 .grid a[aria-disabled='true'] section:hover .background {
-  filter: blur(1px);
+  opacity: 1;
 }
 /* ☝️ */
 
