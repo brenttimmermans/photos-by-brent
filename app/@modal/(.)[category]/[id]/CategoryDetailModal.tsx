@@ -5,7 +5,7 @@ import Modal from '@/app/components/Modal/Modal'
 import useModal from '@/app/components/Modal/useModal'
 
 import { useRouter } from 'next/navigation'
-import { useCallback, useEffect } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import styles from './page.module.css'
 
 interface Props {
@@ -73,8 +73,10 @@ export default function CategoryDetailModal({
   const handleNextClick = () => goToNextImage()
   const handleCloseClick = () => goBackToCategory()
 
+  const [isLoading, setIsLoading] = useState(true)
+
   return (
-    <Modal ref={ref} onClose={handleCloseClick}>
+    <Modal ref={ref} isLoading={isLoading} onClose={handleCloseClick}>
       <Image
         key={photoId}
         src={`/images/${category}/${photoId}`}
@@ -82,9 +84,10 @@ export default function CategoryDetailModal({
         width={width}
         height={height}
         className={styles.modalImage}
+        onLoad={() => setIsLoading(false)}
       />
-      <div className={styles.left} onClick={handlePreviousClick}></div>
-      <div className={styles.right} onClick={handleNextClick}></div>
+      <div className={styles.left} onClick={handlePreviousClick} />
+      <div className={styles.right} onClick={handleNextClick} />
     </Modal>
   )
 }
