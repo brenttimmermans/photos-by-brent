@@ -1,9 +1,9 @@
 import Header from '@/app/Header/Header'
 import '@/app/globals.css'
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Montserrat } from 'next/font/google'
 
-const inter = Inter({ subsets: ['latin'] })
+const montserrat = Montserrat({ subsets: ['latin'], weight: ['400', '700'] })
 
 export const metadata: Metadata = {
   title: 'photos.by.brent',
@@ -18,7 +18,7 @@ interface Props {
 export default function RootLayout({ children, modal }: Props) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={montserrat.className}>
         <Header />
         <main>{children}</main>
         {modal}
