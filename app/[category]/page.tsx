@@ -1,6 +1,6 @@
+import Image from '@/app/components/Image/Image'
 import exifr from 'exifr'
 import { promises as fs } from 'fs'
-import Image from 'next/image'
 import Link from 'next/link'
 import path from 'path'
 import styles from './page.module.css'
@@ -52,7 +52,7 @@ export default async function CategoryPage({ params }: Props) {
                 alt={file}
                 width={width}
                 height={height}
-                className={styles.gridImage}
+                clickable
               />
             </Link>
           )

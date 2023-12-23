@@ -21,7 +21,5 @@
   height: auto;
 
   max-width: 90dvw;
-  max-height: 90dvh;
-
-  object-fit: contain;
+  max-height: 80dvh;
 }

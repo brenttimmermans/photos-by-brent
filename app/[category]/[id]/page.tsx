@@ -1,5 +1,5 @@
+import Image from '@/app/components/Image/Image'
 import exifr from 'exifr'
-import Image from 'next/image'
 import styles from './page.module.css'
 
 import path from 'path'
