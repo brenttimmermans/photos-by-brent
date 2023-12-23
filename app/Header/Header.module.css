@@ -28,7 +28,7 @@
   list-style-type: none;
 }
 
-.header nav a:not(.socials a)::after {
+.header nav a:not(.socials a):after {
   content: '';
   display: block;
   width: 0;
@@ -37,7 +37,7 @@
   transition: width 0.2s;
 }
 
-.header nav a:not(.socials a):hover::after {
+.header nav a:not(.socials a):hover:after {
   width: 100%;
 }
 
@@ -65,7 +65,7 @@
   cursor: not-allowed;
 }
 
-.header nav a[aria-disabled='true']::after {
+.header nav a:not(.socials a)[aria-disabled='true']:after {
   transition: none;
   height: 0;
 }
@@ -95,7 +95,7 @@
     margin-top: 0;
   }
 
-  .header ul + ul::before {
+  .header ul + ul:before {
     content: '|';
   }
 
