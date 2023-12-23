@@ -10,8 +10,7 @@ export default function Home() {
           <div className={styles.background} />
         </section>
       </Link>
-      {/* <Link href="/racing" className={styles.racing}> */}
-      <Link href="/" className={styles.racing} aria-disabled>
+      <Link href="/racing" className={styles.racing}>
         <section>
           <div className={styles.text}>Racing</div>
           <div className={styles.background} />
