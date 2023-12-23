@@ -1,3 +1,3 @@
-# 📸 photos.by.brent Portfolio
+# 📸 photos.by.brent
 
-I'll need to write down some things over here...
+<img src="assets/screenshot.png" alt="A screenshot of the photos.by.brent website" />
