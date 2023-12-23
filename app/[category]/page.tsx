@@ -38,6 +38,9 @@ export default async function CategoryPage({ params }: Props) {
           const { ExifImageWidth, ExifImageHeight } = metadata
           const isHorizontal = ExifImageWidth > ExifImageHeight
 
+          const width = isHorizontal ? 600 : 400
+          const height = isHorizontal ? 400 : 600
+
           return (
             <Link
               key={file}
@@ -47,8 +50,8 @@ export default async function CategoryPage({ params }: Props) {
               <Image
                 src={`/images/${params.category}/${file}`}
                 alt={file}
-                width={ExifImageWidth}
-                height={ExifImageHeight}
+                width={width}
+                height={height}
                 className={styles.gridImage}
               />
             </Link>
