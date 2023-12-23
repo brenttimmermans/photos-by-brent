@@ -43,6 +43,10 @@ export default function CategoryDetailModal({
     () => router.push(`/${category}/${next}`),
     [router, category, next],
   )
+  const goBackToCategory = useCallback(() => {
+    router.push(`/${category}`)
+    closeDialog()
+  }, [router, category, closeDialog])
 
   // Adds keyboard navigation
   useEffect(() => {
@@ -54,19 +58,20 @@ export default function CategoryDetailModal({
       if (event.key === 'ArrowRight') {
         goToNextImage()
       }
+
+      if (event.key === 'Escape') {
+        goBackToCategory()
+      }
     }
 
     document.addEventListener('keydown', handleKeyDown)
 
     return () => document.removeEventListener('keydown', handleKeyDown)
-  }, [goToPreviousImage, goToNextImage])
+  }, [goToPreviousImage, goToNextImage, goBackToCategory])
 
   const handlePreviousClick = () => goToPreviousImage()
   const handleNextClick = () => goToNextImage()
-  const handleCloseClick = () => {
-    closeDialog()
-    router.push(`/${category}`)
-  }
+  const handleCloseClick = () => goBackToCategory()
 
   return (
     <Modal ref={ref} onClose={handleCloseClick}>
