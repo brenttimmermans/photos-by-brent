@@ -1,8 +1,8 @@
 'use client'
 
+import Image from '@/app/components/Image/Image'
 import Modal from '@/app/components/Modal/Modal'
 import useModal from '@/app/components/Modal/useModal'
-import Image from 'next/image'
 
 import { useRouter } from 'next/navigation'
 import { useCallback, useEffect } from 'react'
@@ -17,7 +17,7 @@ interface Props {
   height: number
 }
 
-export default function ImageModal({
+export default function CategoryDetailModal({
   category,
   name: photoId,
   previous,

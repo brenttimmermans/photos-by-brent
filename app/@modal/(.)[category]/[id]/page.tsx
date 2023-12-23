@@ -1,13 +1,13 @@
 import exifr from 'exifr'
 import fs from 'fs/promises'
 import path from 'path'
-import ImageModal from './ImageModal'
+import CategoryDetailModal from './CategoryDetailModal'
 
 interface Props {
   params: { category: string; id: string }
 }
 
-export default async function CategoryDetailModal({ params }: Props) {
+export default async function CategoryDetailModalContainer({ params }: Props) {
   const filesPath = path.resolve('public/images', params.category)
   const files = (await fs.readdir(filesPath)).filter(
     filename => filename.endsWith('.jpg') || filename.endsWith('.jpeg'),
@@ -33,7 +33,7 @@ export default async function CategoryDetailModal({ params }: Props) {
   }
 
   return (
-    <ImageModal
+    <CategoryDetailModal
       category={params.category}
       name={params.id}
       previous={getPreviousImage(params.id)}
