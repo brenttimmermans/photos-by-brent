@@ -1,6 +1,5 @@
 @import url('@/app/styles/normalize.css');
 @import url('@/app/styles/variables.css');
-@import url('@/app/styles/fonts.css');
 
 * {
   box-sizing: border-box;
