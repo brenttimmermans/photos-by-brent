@@ -1,29 +1,30 @@
 import Image from '@/app/components/Image/Image'
-import exifr from 'exifr'
 import styles from './page.module.css'
 
-import path from 'path'
+import { getImageExifProperties } from '@/app/lib/data'
 
 interface Props {
   params: { category: string; id: string }
 }
 
 export default async function CategoryDetailPage({
-  params: { category, id },
+  params: { category, id: image },
 }: Props) {
-  const filePath = path.resolve('public/images', category, id)
-  const { ExifImageWidth, ExifImageHeight } = await exifr.parse(filePath, [
+  const exif = await getImageExifProperties(category, image, [
     'ExifImageWidth',
     'ExifImageHeight',
   ])
 
+  const width = exif.ExifImageWidth ?? 0
+  const height = exif.ExifImageHeight ?? 0
+
   return (
     <section className={styles.container}>
       <Image
-        src={`/images/${category}/${id}`}
-        alt={id}
-        width={ExifImageWidth}
-        height={ExifImageHeight}
+        src={`/images/${category}/${image}`}
+        alt={image}
+        width={width}
+        height={height}
         className={styles.image}
       />
     </section>
