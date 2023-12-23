@@ -1,19 +1,15 @@
-import exifr from 'exifr'
-import fs from 'fs/promises'
-import path from 'path'
+import { getCategoryImages, getImageExifProperties } from '@/app/lib/data'
 import CategoryDetailModal from './CategoryDetailModal'
 
 interface Props {
   params: { category: string; id: string }
 }
 
-export default async function CategoryDetailModalContainer({ params }: Props) {
-  const filesPath = path.resolve('public/images', params.category)
-  const files = (await fs.readdir(filesPath)).filter(
-    filename => filename.endsWith('.jpg') || filename.endsWith('.jpeg'),
-  )
-
-  const exif = await exifr.parse(path.resolve(filesPath, params.id), [
+export default async function CategoryDetailModalContainer({
+  params: { category, id: image },
+}: Props) {
+  const files = await getCategoryImages(category)
+  const exif = await getImageExifProperties(category, image, [
     'ExifImageWidth',
     'ExifImageHeight',
   ])
@@ -32,14 +28,17 @@ export default async function CategoryDetailModalContainer({ params }: Props) {
     return files[previousIndex]
   }
 
+  const width = exif.ExifImageWidth ?? 0
+  const height = exif.ExifImageHeight ?? 0
+
   return (
     <CategoryDetailModal
-      category={params.category}
-      name={params.id}
-      previous={getPreviousImage(params.id)}
-      next={getNextImage(params.id)}
-      width={exif.ExifImageWidth}
-      height={exif.ExifImageHeight}
+      category={category}
+      name={image}
+      width={width}
+      height={height}
+      previous={getPreviousImage(image)}
+      next={getNextImage(image)}
     />
   )
 }
