@@ -1,31 +1,28 @@
 'use client'
 
-import { FC, PropsWithChildren, forwardRef } from 'react'
+import { PropsWithChildren, forwardRef } from 'react'
+import Close from './Close'
+import Loader from './Loader'
 import styles from './Modal.module.css'
 
 interface Props {
   onClose: () => void
+  isLoading?: boolean
 }
 
 const Modal = forwardRef<HTMLDialogElement, PropsWithChildren<Props>>(
-  ({ children, onClose }, ref) => (
+  ({ children, isLoading = false, onClose }, ref) => (
     <dialog ref={ref} className={styles.dialog}>
-      <CloseButton onClick={onClose} />
-      {children}
+      {isLoading && <Loader />}
+
+      {!isLoading && <Close onClick={onClose} />}
+      <div style={{ visibility: isLoading ? 'hidden' : 'visible' }}>
+        {children}
+      </div>
     </dialog>
   ),
 )
 
 Modal.displayName = 'Modal'
-
-interface CloseButtonProps {
-  onClick: () => void
-}
-
-const CloseButton: FC<CloseButtonProps> = ({ onClick }) => (
-  <button onClick={onClick} className={styles.closeButton}>
-    &times;
-  </button>
-)
 
 export default Modal
