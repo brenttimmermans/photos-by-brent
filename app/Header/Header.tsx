@@ -17,10 +17,7 @@ export default function Header() {
               <Link href="/night">Night</Link>
             </li>
             <li>
-              {/* <Link href="/racing">Racing</Link> */}
-              <Link href="/" aria-disabled>
-                Racing
-              </Link>
+              <Link href="/racing">Racing</Link>
             </li>
             <li>
               <Link href="/street">Street</Link>
