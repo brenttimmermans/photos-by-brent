@@ -1,6 +1,5 @@
 import exifr from 'exifr'
 import Image from 'next/image'
-import Link from 'next/link'
 import styles from './page.module.css'
 
 import path from 'path'
@@ -19,17 +18,14 @@ export default async function CategoryDetailPage({
   ])
 
   return (
-    <>
-      <Link href={`/${category}`}>&lt; Back</Link>
-      <section className={styles.container}>
-        <Image
-          src={`/images/${category}/${id}`}
-          alt={id}
-          width={ExifImageWidth}
-          height={ExifImageHeight}
-          className={styles.image}
-        />
-      </section>
-    </>
+    <section className={styles.container}>
+      <Image
+        src={`/images/${category}/${id}`}
+        alt={id}
+        width={ExifImageWidth}
+        height={ExifImageHeight}
+        className={styles.image}
+      />
+    </section>
   )
 }
