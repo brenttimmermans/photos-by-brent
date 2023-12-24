@@ -1,8 +1,9 @@
 import { getCategoryImages, getImageExifProperties } from '@/app/lib/data'
+import { Category } from '@/app/types'
 import CategoryDetailModal from './CategoryDetailModal'
 
 interface Props {
-  params: { category: string; id: string }
+  params: { category: Category; id: string }
 }
 
 export default async function CategoryDetailModalContainer({

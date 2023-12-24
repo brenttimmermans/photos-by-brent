@@ -1,10 +1,11 @@
 import Image from '@/app/components/Image/Image'
 import { getCategoryImages, getImagesExifProperties } from '@/app/lib/data'
+import { Category } from '@/app/types'
 import Link from 'next/link'
 import styles from './page.module.css'
 
 interface Props {
-  params: { category: string }
+  params: { category: Category }
 }
 
 export default async function CategoryPage({ params: { category } }: Props) {
