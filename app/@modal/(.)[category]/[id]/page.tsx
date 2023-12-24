@@ -1,5 +1,6 @@
 import { getCategoryImages, getImageExifProperties } from '@/app/lib/data'
 import { Category } from '@/app/types'
+import { redirect } from 'next/navigation'
 import CategoryDetailModal from './CategoryDetailModal'
 
 interface Props {
@@ -10,10 +11,15 @@ export default async function CategoryDetailModalContainer({
   params: { category, id: image },
 }: Props) {
   const files = await getCategoryImages(category)
-  const exif = await getImageExifProperties(category, image, [
-    'ExifImageWidth',
-    'ExifImageHeight',
-  ])
+  let exif
+  try {
+    exif = await getImageExifProperties(category, image, [
+      'ExifImageWidth',
+      'ExifImageHeight',
+    ])
+  } catch (error) {
+    redirect(`/${category}`)
+  }
 
   const getNextImage = (file: string) => {
     const index = files.indexOf(file)
