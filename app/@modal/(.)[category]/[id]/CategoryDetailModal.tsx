@@ -3,13 +3,13 @@
 import Image from '@/app/components/Image/Image'
 import Modal from '@/app/components/Modal/Modal'
 import useModal from '@/app/components/Modal/useModal'
-
+import { Category } from '@/app/types'
 import { useRouter } from 'next/navigation'
 import { useCallback, useEffect, useState } from 'react'
 import styles from './page.module.css'
 
 interface Props {
-  category: string
+  category: Category
   name: string
   previous: string
   next: string
