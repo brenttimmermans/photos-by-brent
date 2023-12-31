@@ -28,23 +28,6 @@
   list-style-type: none;
 }
 
-.header nav a:not(.socials a):after {
-  content: '';
-  display: block;
-  width: 0;
-  height: 1px;
-  background: #000;
-  transition: width 0.2s;
-}
-
-.header nav a:not(.socials a):hover:after {
-  width: 100%;
-}
-
-.socials li {
-  height: 18px;
-}
-
 .socials li {
   height: 18px;
 }
@@ -58,18 +41,6 @@
     filter: invert(1);
   }
 }
-
-/* 👇 Can be deleted once all pages are implemented */
-.header nav a[aria-disabled='true'] {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-.header nav a:not(.socials a)[aria-disabled='true']:after {
-  transition: none;
-  height: 0;
-}
-/* ☝️ */
 
 @media (min-width: 900px) {
   .header {

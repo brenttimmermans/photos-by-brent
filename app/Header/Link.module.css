@@ -1,0 +1,28 @@
+.link:after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 1px;
+  background: #000;
+  transition: width 0.2s;
+}
+
+.link:hover:after {
+  width: 100%;
+}
+
+.link.active:after {
+  width: 100%;
+}
+
+/* 👇 Can be deleted once all pages are implemented */
+.link[aria-disabled='true'] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.link[aria-disabled='true']:after {
+  transition: none;
+  height: 0;
+}
+/* ☝️ */

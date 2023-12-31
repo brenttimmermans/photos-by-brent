@@ -1,8 +1,29 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import styles from './Header.module.css'
+import CustomLink from './Link'
 
 const INSTAGRAM_LINK = 'https://www.instagram.com/photos.by.brent'
+
+const categorieRoutes = [
+  {
+    name: 'Night',
+    path: '/night',
+  },
+  {
+    name: 'Racing',
+    path: '/racing',
+  },
+  {
+    name: 'Street',
+    path: '/street',
+  },
+  {
+    name: 'Film',
+    path: '/',
+    disabled: true,
+  },
+]
 
 export default function Header() {
   return (
@@ -13,34 +34,26 @@ export default function Header() {
       <div>
         <nav>
           <ul>
-            <li>
-              <Link href="/night">Night</Link>
-            </li>
-            <li>
-              <Link href="/racing">Racing</Link>
-            </li>
-            <li>
-              <Link href="/street">Street</Link>
-            </li>
-            <li>
-              {/* <Link href="/film">Film</Link> */}
-              <Link href="/" aria-disabled>
-                Film
-              </Link>
-            </li>
+            {categorieRoutes.map(({ name, path, disabled }) => (
+              <li key={name}>
+                <CustomLink path={path} disabled={disabled}>
+                  {name}
+                </CustomLink>
+              </li>
+            ))}
           </ul>
           <ul>
             <li>
-              {/* <Link href="/about">About</Link> */}
-              <Link href="/" aria-disabled>
+              {/* <CustomLink href="/about">About</CustomLink> */}
+              <CustomLink path="/" disabled>
                 About
-              </Link>
+              </CustomLink>
             </li>
             <li>
-              {/* <Link href="/contact">Contact</Link> */}
-              <Link href="/" aria-disabled>
+              {/* <CustomLink href="/contact">Contact</CustomLink> */}
+              <CustomLink path="/" disabled>
                 Contact
-              </Link>
+              </CustomLink>
             </li>
           </ul>
           <ul className={styles.socials}>
