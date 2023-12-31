@@ -3,7 +3,7 @@
   display: block;
   width: 0;
   height: 1px;
-  background: hsl(0deg, 0%, 0%);
+  background: var(--color-text);
   transition: width 0.2s;
 }
 
