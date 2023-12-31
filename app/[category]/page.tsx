@@ -17,6 +17,7 @@ export default async function CategoryPage({ params: { category } }: Props) {
 
   return (
     <>
+      <h2 className={styles.title}>{category}</h2>
       <div className={styles.grid}>
         {Object.entries(metadata).map(([image, exif]) => {
           const isHorizontal =
