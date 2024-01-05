@@ -1,7 +1,9 @@
 {
   "name": "photos-by-brent",
   "version": "0.1.0",
-  "private": true,
+  "description": "photos.by.brent portfolio website 📸",
+  "author": "brenttimmermans",
+  "license": "ISC",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
