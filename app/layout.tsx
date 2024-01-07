@@ -1,5 +1,6 @@
 import Header from '@/app/Header/Header'
 import '@/app/globals.css'
+import { Analytics } from '@vercel/analytics/react'
 import type { Metadata } from 'next'
 import { Montserrat } from 'next/font/google'
 
@@ -22,6 +23,7 @@ export default function RootLayout({ children, modal }: Props) {
         <Header />
         <main>{children}</main>
         {modal}
+        <Analytics />
       </body>
     </html>
   )

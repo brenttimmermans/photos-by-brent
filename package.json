@@ -12,6 +12,7 @@
     "lint:fix": "prettier --write app/"
   },
   "dependencies": {
+    "@vercel/analytics": "^1.1.1",
     "clsx": "^2.0.0",
     "exifr": "^7.1.3",
     "next": "14.0.4",
