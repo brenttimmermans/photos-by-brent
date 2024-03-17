@@ -19,7 +19,7 @@ const categorieRoutes = [
     path: '/street',
   },
   {
-    name: 'Film',
+    name: 'Nature',
     path: '/',
     disabled: true,
   },

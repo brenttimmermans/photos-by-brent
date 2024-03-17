@@ -74,12 +74,12 @@
   background-image: url('/banners/racing.jpg');
 }
 
-.film {
-  grid-area: film;
+.nature {
+  grid-area: nature;
 }
 
-.film .background {
-  background-image: url('/banners/film.jpg');
+.nature .background {
+  background-image: url('/banners/nature.jpg');
 }
 
 @media (min-width: 900px) {
@@ -90,7 +90,7 @@
       'night night night night'
       'night night night night'
       'racing racing street street'
-      'racing racing film film';
+      'racing racing nature nature';
     gap: 4px;
     max-height: 1440px;
   }
