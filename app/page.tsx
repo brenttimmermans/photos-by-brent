@@ -22,10 +22,10 @@ export default function Home() {
           <div className={styles.background} />
         </section>
       </Link>
-      {/* <Link href="/film" className={styles.film}> */}
-      <Link href="/" className={styles.film} aria-disabled>
+      {/* <Link href="/nature" className={styles.nature}> */}
+      <Link href="/" className={styles.nature} aria-disabled>
         <section>
-          <div className={styles.text}>Film</div>
+          <div className={styles.text}>Nature</div>
           <div className={styles.background} />
         </section>
       </Link>
