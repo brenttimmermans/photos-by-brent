@@ -20,8 +20,7 @@ const categorieRoutes = [
   },
   {
     name: 'Nature',
-    path: '/',
-    disabled: true,
+    path: '/nature',
   },
 ]
 
@@ -34,11 +33,9 @@ export default function Header() {
       <div>
         <nav>
           <ul>
-            {categorieRoutes.map(({ name, path, disabled }) => (
+            {categorieRoutes.map(({ name, path }) => (
               <li key={name}>
-                <CustomLink path={path} disabled={disabled}>
-                  {name}
-                </CustomLink>
+                <CustomLink path={path}>{name}</CustomLink>
               </li>
             ))}
           </ul>
