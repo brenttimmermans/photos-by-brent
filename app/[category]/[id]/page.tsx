@@ -32,6 +32,8 @@ export default async function CategoryDetailPage({
         width={width}
         height={height}
         className={styles.image}
+        // Force style priority over className
+        style={{ width: 'auto', height: 'auto' }}
       />
     </section>
   )
