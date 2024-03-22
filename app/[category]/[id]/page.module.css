@@ -4,8 +4,6 @@
 }
 
 .image {
-  width: auto;
-  height: auto;
   max-width: 90dvw;
   max-height: 80dvh;
   object-fit: contain;
