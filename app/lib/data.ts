@@ -1,36 +1,36 @@
-import exifr from 'exifr'
-import fs from 'fs/promises'
-import path from 'path'
+import exifr from 'exifr';
+import fs from 'fs/promises';
+import path from 'path';
 
-const IMAGES_PATH = path.resolve('public/images')
+const IMAGES_PATH = path.resolve('public/images');
 
 export const getCategoryImages = async (
   category: string,
 ): Promise<string[]> => {
-  const filesPath = path.resolve(IMAGES_PATH, category)
+  const filesPath = path.resolve(IMAGES_PATH, category);
   const files = (await fs.readdir(filesPath)).filter(
     filename => filename.endsWith('.jpg') || filename.endsWith('.jpeg'),
-  )
+  );
 
-  return files
-}
+  return files;
+};
 
 export interface ExifData {
-  ExifImageWidth: number
-  ExifImageHeight: number
+  ExifImageWidth: number;
+  ExifImageHeight: number;
 }
 
-type ExifProperty = keyof ExifData
+type ExifProperty = keyof ExifData;
 
 export async function getImageExifProperties<K extends string>(
   category: string,
   image: string,
   properties: ExifProperty[],
 ): Promise<Partial<ExifData>> {
-  const filePath = path.resolve(IMAGES_PATH, category, image)
-  const exif: Partial<ExifData> = await exifr.parse(filePath, properties)
+  const filePath = path.resolve(IMAGES_PATH, category, image);
+  const exif: Partial<ExifData> = await exifr.parse(filePath, properties);
 
-  return exif
+  return exif;
 }
 
 export async function getImagesExifProperties<K extends string>(
@@ -45,5 +45,5 @@ export async function getImagesExifProperties<K extends string>(
         await getImageExifProperties(category, image, properties),
       ]),
     ),
-  )
+  );
 }

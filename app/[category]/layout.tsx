@@ -1,11 +1,11 @@
-import { Category } from '@/app/types'
-import { redirect } from 'next/navigation'
+import { Category } from '@/app/types';
+import { redirect } from 'next/navigation';
 
 interface Props {
-  children: React.ReactNode
+  children: React.ReactNode;
   params: {
-    category: string
-  }
+    category: string;
+  };
 }
 
 export default function CategoryLayout({
@@ -13,8 +13,8 @@ export default function CategoryLayout({
   params: { category },
 }: Props) {
   if (!(category in Category)) {
-    redirect('/')
+    redirect('/');
   }
 
-  return <>{children}</>
+  return <>{children}</>;
 }

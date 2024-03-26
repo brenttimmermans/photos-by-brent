@@ -1,10 +1,10 @@
-import { toBase64 } from '@/app/lib/toBase64'
-import clsx from 'clsx'
-import NextImage, { ImageProps as NextImageProps } from 'next/image'
-import styles from './Image.module.css'
+import { toBase64 } from '@/app/lib/toBase64';
+import clsx from 'clsx';
+import NextImage, { ImageProps as NextImageProps } from 'next/image';
+import styles from './Image.module.css';
 
 interface Props extends NextImageProps {
-  clickable?: boolean
+  clickable?: boolean;
 }
 
 export default function Image({
@@ -20,7 +20,7 @@ export default function Image({
       )}`}
       className={clsx(styles.image, className, clickable && styles.clickable)}
     />
-  )
+  );
 }
 
 const shimmer = (w: number, h: number) => `
@@ -35,4 +35,4 @@ const shimmer = (w: number, h: number) => `
   <rect width="${w}" height="${h}" fill="#EEE" />
   <rect id="r" width="${w}" height="${h}" fill="url(#g)" />
   <animate xlink:href="#r" attributeName="x" from="-${w}" to="${w}" dur="1.5s" repeatCount="indefinite"  />
-</svg>`
+</svg>`;
