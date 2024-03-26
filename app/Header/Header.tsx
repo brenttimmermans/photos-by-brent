@@ -1,9 +1,9 @@
-import Image from 'next/image'
-import Link from 'next/link'
-import styles from './Header.module.css'
-import CustomLink from './Link'
+import Image from 'next/image';
+import Link from 'next/link';
+import styles from './Header.module.css';
+import CustomLink from './Link';
 
-const INSTAGRAM_LINK = 'https://www.instagram.com/photos.by.brent'
+const INSTAGRAM_LINK = 'https://www.instagram.com/photos.by.brent';
 
 const categorieRoutes = [
   {
@@ -22,7 +22,7 @@ const categorieRoutes = [
     name: 'Nature',
     path: '/nature',
   },
-]
+];
 
 export default function Header() {
   return (
@@ -68,5 +68,5 @@ export default function Header() {
         </nav>
       </div>
     </header>
-  )
+  );
 }

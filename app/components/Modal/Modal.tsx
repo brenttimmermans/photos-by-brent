@@ -1,13 +1,13 @@
-'use client'
+'use client';
 
-import { PropsWithChildren, forwardRef } from 'react'
-import Close from './Close'
-import Loader from './Loader'
-import styles from './Modal.module.css'
+import { PropsWithChildren, forwardRef } from 'react';
+import Close from './Close';
+import Loader from './Loader';
+import styles from './Modal.module.css';
 
 interface Props {
-  onClose: () => void
-  isLoading?: boolean
+  onClose: () => void;
+  isLoading?: boolean;
 }
 
 const Modal = forwardRef<HTMLDialogElement, PropsWithChildren<Props>>(
@@ -21,8 +21,8 @@ const Modal = forwardRef<HTMLDialogElement, PropsWithChildren<Props>>(
       </div>
     </dialog>
   ),
-)
+);
 
-Modal.displayName = 'Modal'
+Modal.displayName = 'Modal';
 
-export default Modal
+export default Modal;

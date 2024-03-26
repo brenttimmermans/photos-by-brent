@@ -1,20 +1,20 @@
-'use client'
+'use client';
 
-import Image from '@/app/components/Image/Image'
-import Modal from '@/app/components/Modal/Modal'
-import useModal from '@/app/components/Modal/useModal'
-import { Category } from '@/app/types'
-import { useRouter } from 'next/navigation'
-import { useCallback, useEffect, useState } from 'react'
-import styles from './page.module.css'
+import Image from '@/app/components/Image/Image';
+import Modal from '@/app/components/Modal/Modal';
+import useModal from '@/app/components/Modal/useModal';
+import { Category } from '@/app/types';
+import { useRouter } from 'next/navigation';
+import { useCallback, useEffect, useState } from 'react';
+import styles from './page.module.css';
 
 interface Props {
-  category: Category
-  name: string
-  previous: string
-  next: string
-  width: number
-  height: number
+  category: Category;
+  name: string;
+  previous: string;
+  next: string;
+  width: number;
+  height: number;
 }
 
 export default function CategoryDetailModal({
@@ -25,55 +25,55 @@ export default function CategoryDetailModal({
   width,
   height,
 }: Props) {
-  const { ref, openDialog, closeDialog } = useModal()
-  const router = useRouter()
+  const { ref, openDialog, closeDialog } = useModal();
+  const router = useRouter();
 
   useEffect(() => {
     if (!ref.current?.open) {
-      window.scrollTo(0, 0)
-      openDialog()
+      window.scrollTo(0, 0);
+      openDialog();
     }
-  }, [ref, openDialog, photoId])
+  }, [ref, openDialog, photoId]);
 
   const goToPreviousImage = useCallback(
     () => router.push(`/${category}/${previous}`),
     [router, category, previous],
-  )
+  );
   const goToNextImage = useCallback(
     () => router.push(`/${category}/${next}`),
     [router, category, next],
-  )
+  );
   const goBackToCategory = useCallback(() => {
-    router.push(`/${category}`)
-    closeDialog()
-  }, [router, category, closeDialog])
+    router.push(`/${category}`);
+    closeDialog();
+  }, [router, category, closeDialog]);
 
   // Adds keyboard navigation
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'ArrowLeft') {
-        goToPreviousImage()
+        goToPreviousImage();
       }
 
       if (event.key === 'ArrowRight') {
-        goToNextImage()
+        goToNextImage();
       }
 
       if (event.key === 'Escape') {
-        goBackToCategory()
+        goBackToCategory();
       }
-    }
+    };
 
-    document.addEventListener('keydown', handleKeyDown)
+    document.addEventListener('keydown', handleKeyDown);
 
-    return () => document.removeEventListener('keydown', handleKeyDown)
-  }, [goToPreviousImage, goToNextImage, goBackToCategory])
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [goToPreviousImage, goToNextImage, goBackToCategory]);
 
-  const handlePreviousClick = () => goToPreviousImage()
-  const handleNextClick = () => goToNextImage()
-  const handleCloseClick = () => goBackToCategory()
+  const handlePreviousClick = () => goToPreviousImage();
+  const handleNextClick = () => goToNextImage();
+  const handleCloseClick = () => goBackToCategory();
 
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(true);
 
   return (
     <Modal ref={ref} isLoading={isLoading} onClose={handleCloseClick}>
@@ -89,5 +89,5 @@ export default function CategoryDetailModal({
       <div className={styles.left} onClick={handlePreviousClick} />
       <div className={styles.right} onClick={handleNextClick} />
     </Modal>
-  )
+  );
 }

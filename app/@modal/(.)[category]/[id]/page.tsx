@@ -1,42 +1,42 @@
-import { getCategoryImages, getImageExifProperties } from '@/app/lib/data'
-import { Category } from '@/app/types'
-import { redirect } from 'next/navigation'
-import CategoryDetailModal from './CategoryDetailModal'
+import { getCategoryImages, getImageExifProperties } from '@/app/lib/data';
+import { Category } from '@/app/types';
+import { redirect } from 'next/navigation';
+import CategoryDetailModal from './CategoryDetailModal';
 
 interface Props {
-  params: { category: Category; id: string }
+  params: { category: Category; id: string };
 }
 
 export default async function CategoryDetailModalContainer({
   params: { category, id: image },
 }: Props) {
-  const files = await getCategoryImages(category)
-  let exif
+  const files = await getCategoryImages(category);
+  let exif;
   try {
     exif = await getImageExifProperties(category, image, [
       'ExifImageWidth',
       'ExifImageHeight',
-    ])
+    ]);
   } catch (error) {
-    redirect(`/${category}`)
+    redirect(`/${category}`);
   }
 
   const getNextImage = (file: string) => {
-    const index = files.indexOf(file)
-    const nextIndex = index === files.length - 1 ? 0 : index + 1
+    const index = files.indexOf(file);
+    const nextIndex = index === files.length - 1 ? 0 : index + 1;
 
-    return files[nextIndex]
-  }
+    return files[nextIndex];
+  };
 
   const getPreviousImage = (file: string) => {
-    const index = files.indexOf(file)
-    const previousIndex = index === 0 ? files.length - 1 : index - 1
+    const index = files.indexOf(file);
+    const previousIndex = index === 0 ? files.length - 1 : index - 1;
 
-    return files[previousIndex]
-  }
+    return files[previousIndex];
+  };
 
-  const width = exif.ExifImageWidth ?? 0
-  const height = exif.ExifImageHeight ?? 0
+  const width = exif.ExifImageWidth ?? 0;
+  const height = exif.ExifImageHeight ?? 0;
 
   return (
     <CategoryDetailModal
@@ -47,5 +47,5 @@ export default async function CategoryDetailModalContainer({
       previous={getPreviousImage(image)}
       next={getNextImage(image)}
     />
-  )
+  );
 }

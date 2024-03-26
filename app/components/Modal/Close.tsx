@@ -1,7 +1,7 @@
-import styles from './Close.module.css'
+import styles from './Close.module.css';
 
 interface CloseButtonProps {
-  onClick: () => void
+  onClick: () => void;
 }
 
 export default function Close({ onClick }: CloseButtonProps) {
@@ -9,5 +9,5 @@ export default function Close({ onClick }: CloseButtonProps) {
     <button onClick={onClick} className={styles.close}>
       &times;
     </button>
-  )
+  );
 }
