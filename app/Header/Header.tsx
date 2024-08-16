@@ -4,6 +4,7 @@ import styles from './Header.module.css';
 import CustomLink from './Link';
 
 const INSTAGRAM_LINK = 'https://www.instagram.com/photos.by.brent';
+const FLICKR_LINK = 'https://www.flickr.com/photos/photos-by-brent';
 
 const categorieRoutes = [
   {
@@ -53,6 +54,16 @@ export default function Header() {
                 <Image
                   src="/icons/instagram.svg"
                   alt="Instagram icon"
+                  width={16}
+                  height={16}
+                />
+              </Link>
+            </li>
+            <li>
+              <Link href={FLICKR_LINK}>
+                <Image
+                  src="/icons/flickr.png"
+                  alt="Flickr icon"
                   width={16}
                   height={16}
                 />
