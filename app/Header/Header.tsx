@@ -41,12 +41,6 @@ export default function Header() {
           </ul>
           <ul>
             <li>
-              {/* <CustomLink href="/about">About</CustomLink> */}
-              <CustomLink path="/" disabled>
-                About
-              </CustomLink>
-            </li>
-            <li>
               {/* <CustomLink href="/contact">Contact</CustomLink> */}
               <CustomLink path="/" disabled>
                 Contact
