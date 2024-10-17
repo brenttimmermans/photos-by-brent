@@ -1,3 +1,4 @@
+import Footer from '@/app/components/Footer/Footer';
 import Header from '@/app/components/Header/Header';
 import '@/app/globals.css';
 import { Analytics } from '@vercel/analytics/react';
@@ -23,6 +24,7 @@ export default function RootLayout({ children, modal }: Props) {
       <body className={montserrat.className}>
         <Header />
         <main>{children}</main>
+        <Footer />
         {modal}
         <Analytics />
         <SpeedInsights />
