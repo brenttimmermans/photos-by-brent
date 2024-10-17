@@ -1,4 +1,4 @@
-import Header from '@/app/Header/Header';
+import Header from '@/app/components/Header/Header';
 import '@/app/globals.css';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
