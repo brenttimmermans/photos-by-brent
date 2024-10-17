@@ -1,10 +1,14 @@
 .header {
+  background-color: var(--color-background);
+
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
   column-gap: 100px;
+
+  padding: 25px 0;
 }
 
 .header h1 {
@@ -50,6 +54,10 @@
   .header {
     flex-direction: row;
     justify-content: space-between;
+
+    position: sticky;
+    top: 0;
+    z-index: 2;
   }
 
   .header nav {
