@@ -29,7 +29,7 @@ export default function Header() {
   return (
     <header className={styles.header}>
       <Link href="/">
-        <h1>Photos.by.brent 📸</h1>
+        <h1>photos.by.brent 📸</h1>
       </Link>
       <div>
         <nav>
