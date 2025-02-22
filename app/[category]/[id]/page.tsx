@@ -5,12 +5,12 @@ import { redirect } from 'next/navigation';
 import styles from './page.module.css';
 
 interface Props {
-  params: { category: Category; id: string };
+  params: Promise<{ category: Category; id: string }>;
 }
 
-export default async function CategoryDetailPage({
-  params: { category, id: image },
-}: Props) {
+export default async function CategoryDetailPage({ params }: Props) {
+  const { category, id: image } = await params;
+
   let exif;
   try {
     exif = await getImageExifProperties(category, image, [

@@ -4,12 +4,12 @@ import { redirect } from 'next/navigation';
 import CategoryDetailModal from './CategoryDetailModal';
 
 interface Props {
-  params: { category: Category; id: string };
+  params: Promise<{ category: Category; id: string }>;
 }
 
-export default async function CategoryDetailModalContainer({
-  params: { category, id: image },
-}: Props) {
+export default async function CategoryDetailModalContainer({ params }: Props) {
+  const { category, id: image } = await params;
+
   const files = await getCategoryImages(category);
   let exif;
   try {

@@ -5,10 +5,12 @@ import Link from 'next/link';
 import styles from './page.module.css';
 
 interface Props {
-  params: { category: Category };
+  params: Promise<{ category: Category }>;
 }
 
-export default async function CategoryPage({ params: { category } }: Props) {
+export default async function CategoryPage({ params }: Props) {
+  const { category } = await params;
+
   const files = await getCategoryImages(category);
   const metadata = await getImagesExifProperties(category, files, [
     'ExifImageWidth',
