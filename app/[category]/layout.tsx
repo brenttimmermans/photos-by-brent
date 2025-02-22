@@ -3,15 +3,12 @@ import { redirect } from 'next/navigation';
 
 interface Props {
   children: React.ReactNode;
-  params: {
-    category: string;
-  };
+  params: Promise<{ category: string }>;
 }
 
-export default function CategoryLayout({
-  children,
-  params: { category },
-}: Props) {
+export default async function CategoryLayout({ params, children }: Props) {
+  const { category } = await params;
+
   if (!(category in Category)) {
     redirect('/');
   }
