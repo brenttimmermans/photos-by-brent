@@ -1,3 +1,4 @@
+import { Category } from '@/app/types';
 import exifr from 'exifr';
 import fs from 'fs/promises';
 import path from 'path';
@@ -48,4 +49,18 @@ export async function getImagesExifProperties<K extends string>(
       ]),
     ),
   );
+}
+
+export async function getAllCategoryImages() {
+  const categories = Object.values(Category);
+
+  const perCategory = await Promise.all(
+    categories.map(async category => {
+      const images = await getCategoryImages(category);
+
+      return images.map(id => ({ category, id }));
+    }),
+  );
+
+  return perCategory.flat();
 }
