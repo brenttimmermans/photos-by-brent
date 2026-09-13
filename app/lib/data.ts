@@ -28,7 +28,9 @@ export async function getImageExifProperties<K extends string>(
   properties: ExifProperty[],
 ): Promise<Partial<ExifData>> {
   const filePath = path.resolve(IMAGES_PATH, category, image);
-  const exif: Partial<ExifData> = await exifr.parse(filePath, properties);
+  // exifr leaks the file handle when given a path, which is fatal on Node >= 26.
+  const buffer = await fs.readFile(filePath);
+  const exif: Partial<ExifData> = await exifr.parse(buffer, properties);
 
   return exif;
 }
