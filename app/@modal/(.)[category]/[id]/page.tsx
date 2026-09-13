@@ -1,10 +1,18 @@
-import { getCategoryImages, getImageExifProperties } from '@/app/lib/data';
+import {
+  getAllCategoryImages,
+  getCategoryImages,
+  getImageExifProperties,
+} from '@/app/lib/data';
 import { Category } from '@/app/types';
 import { redirect } from 'next/navigation';
 import CategoryDetailModal from './CategoryDetailModal';
 
 interface Props {
   params: Promise<{ category: Category; id: string }>;
+}
+
+export async function generateStaticParams() {
+  return getAllCategoryImages();
 }
 
 export default async function CategoryDetailModalContainer({ params }: Props) {
