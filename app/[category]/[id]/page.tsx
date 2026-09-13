@@ -1,11 +1,15 @@
 import Image from '@/app/components/Image/Image';
-import { getImageExifProperties } from '@/app/lib/data';
+import { getAllCategoryImages, getImageExifProperties } from '@/app/lib/data';
 import { Category } from '@/app/types';
 import { redirect } from 'next/navigation';
 import styles from './page.module.css';
 
 interface Props {
   params: Promise<{ category: Category; id: string }>;
+}
+
+export async function generateStaticParams() {
+  return getAllCategoryImages();
 }
 
 export default async function CategoryDetailPage({ params }: Props) {
