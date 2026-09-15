@@ -15,7 +15,7 @@
   },
   "redirects": [
     {
-      "source": "/:path*",
+      "source": "/(.*)",
       "has": [{ "type": "host", "value": "(www\\.)?racing\\.zotgoe\\.be" }],
       "destination": "https://www.photos.brenttimmermans.com/racing",
       "permanent": false
