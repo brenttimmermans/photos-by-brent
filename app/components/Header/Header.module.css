@@ -12,7 +12,12 @@
 }
 
 .header h1 {
-  font-size: 1.3em;
+  font-size: 1.8em;
+}
+
+.header p {
+  font-size: 0.9em;
+  text-align: center;
 }
 
 .header nav {
@@ -60,6 +65,10 @@
     z-index: 2;
   }
 
+  .header p {
+    text-align: left;
+  }
+
   .header nav {
     display: flex;
     align-items: center;
@@ -79,7 +88,7 @@
   }
 
   .header ul + ul:before {
-    content: '|';
+    content: '·';
   }
 
   .header ul li {

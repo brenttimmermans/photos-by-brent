@@ -30,6 +30,7 @@ export default function Header() {
     <header className={styles.header}>
       <Link href="/">
         <h1>photos.by.brent 📸</h1>
+        <p>by Brent Timmermans</p>
       </Link>
       <div>
         <nav>
