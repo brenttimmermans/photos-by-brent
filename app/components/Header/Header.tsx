@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import ContactLink from '../ContactLink/ContactLink';
 import styles from './Header.module.css';
 import CustomLink from './Link';
 
@@ -41,10 +42,7 @@ export default function Header() {
           </ul>
           <ul>
             <li>
-              {/* <CustomLink href="/contact">Contact</CustomLink> */}
-              <CustomLink path="/" disabled>
-                Contact
-              </CustomLink>
+              <ContactLink />
             </li>
           </ul>
           <ul className={styles.socials}>
