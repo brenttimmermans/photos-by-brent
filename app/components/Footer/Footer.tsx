@@ -5,7 +5,8 @@ export default function Footer() {
 
   return (
     <footer className={styles.footer}>
-      © Brent Timmermans · {currentYear}
+      <p>Zot goe · BE1008.468.616</p>
+      <p>© Brent Timmermans · {currentYear}</p>
     </footer>
   );
 }
