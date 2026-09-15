@@ -17,8 +17,8 @@
     {
       "source": "/(.*)",
       "has": [{ "type": "host", "value": "(www\\.)?racing\\.zotgoe\\.be" }],
-      "destination": "https://www.photos.brenttimmermans.com/racing",
-      "permanent": false
+      "destination": "https://photos.brenttimmermans.com/racing",
+      "permanent": true
     }
   ]
 }
