@@ -1,0 +1,37 @@
+name: Deploy to Cloudflare
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-production
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+
+      - run: npm ci
+
+      # Renders are only valid for the script and widths that made them.
+      - uses: actions/cache@v6
+        with:
+          path: public/_img
+          key: images-${{ hashFiles('scripts/generate-images.mjs', 'next.config.js') }}-${{ hashFiles('public/images/**') }}
+          restore-keys: images-${{ hashFiles('scripts/generate-images.mjs', 'next.config.js') }}-
+
+      - run: npm run build
+
+      - run: npx wrangler deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
