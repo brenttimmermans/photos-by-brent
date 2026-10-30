@@ -5,12 +5,5 @@
   "assets": {
     "directory": "./out",
     "not_found_handling": "404-page"
-  },
-  // www.racing only redirects (zone Redirect Rule), but its two-level host
-  // needs a Custom Domain to get a certificate.
-  "routes": [
-    { "pattern": "photos.brenttimmermans.com", "custom_domain": true },
-    { "pattern": "www.photos.brenttimmermans.com", "custom_domain": true },
-    { "pattern": "www.racing.zotgoe.be", "custom_domain": true }
-  ]
+  }
 }
