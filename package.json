@@ -10,6 +10,7 @@
     "build": "npm run images && next build && node scripts/apply-intercepted-routes.mjs",
     "start": "next start",
     "lint": "next lint",
+    "typecheck": "tsc --noEmit",
     "lint:fix": "prettier --write app/"
   },
   "dependencies": {
