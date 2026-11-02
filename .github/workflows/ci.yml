@@ -1,0 +1,15 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  ci:
+    uses: brenttimmermans/github-actions/.github/workflows/cloudflare-ci.yml@v1
+    secrets: inherit
+    with:
+      cache-path: public/_img
+      cache-files: scripts/generate-images.mjs next.config.js public/images
